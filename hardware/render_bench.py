@@ -127,7 +127,8 @@ def box(name, size, loc, rot=(0, 0, 0), material=None, bevel=0.004):
     bpy.ops.mesh.primitive_cube_add(size=1, location=loc, rotation=rot)
     obj = bpy.context.active_object
     obj.name = name
-    obj.scale = (size[0] / 2, size[1] / 2, size[2] / 2)
+    # a size=1 cube has edge length 1, so scale by the full target size
+    obj.scale = (size[0], size[1], size[2])
     bpy.ops.object.transform_apply(scale=True)
     return _finish(obj, material, bevel)
 
