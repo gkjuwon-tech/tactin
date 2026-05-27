@@ -6,3 +6,5 @@ build/
 dist/
 # Generated CAD artifacts (regenerate from hardware/bench.scad)
 hardware/*.stl
+# Downloaded HDRI (CC0, fetched from polyhaven.com; see render_bench.py)
+hardware/assets/
