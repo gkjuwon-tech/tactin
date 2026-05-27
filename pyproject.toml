@@ -1,0 +1,27 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "tactin"
+version = "0.1.0"
+description = "Vibe Hardware: an AI robot-arm assembly bench for hardware prototyping."
+requires-python = ">=3.10"
+dependencies = [
+    "numpy>=1.24",
+    "pyyaml>=6.0",
+]
+
+[project.optional-dependencies]
+agent = ["anthropic>=0.40"]
+vision = ["opencv-python>=4.9"]
+dev = ["pytest>=8.0"]
+
+[project.scripts]
+tactin = "tactin.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["tactin*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

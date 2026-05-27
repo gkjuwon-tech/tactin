@@ -1,0 +1,31 @@
+name: esp32-blinky
+# Example circuit BOM consumed by the assembly agent.
+# `label` must match a detector class the vision model knows.
+parts:
+  - ref: U1
+    label: esp32_devkit
+    value: ESP32-WROOM-32
+    package: DIP-38
+    qty: 1
+    mpn: ESP32-DEVKITC-32E
+    supplier: Espressif
+  - ref: BB1
+    label: breadboard
+    value: 830-point
+    package: module
+    qty: 1
+  - ref: D1
+    label: led_red
+    value: 2V 20mA
+    package: THT-5mm
+    qty: 1
+  - ref: R1
+    label: resistor_330
+    value: 330R
+    package: THT-axial
+    qty: 1
+  - ref: W1
+    label: jumper_wire
+    value: M-M 10cm
+    package: wire
+    qty: 1
