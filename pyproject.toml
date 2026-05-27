@@ -1,0 +1,30 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "tactin"
+version = "0.1.0"
+description = "Vibe hardware: an AI agent that drives a desktop robot arm to assemble electronics on a prototyping bench."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "Proprietary" }
+authors = [{ name = "TACTIN" }]
+# Core is pure-Python and dependency-free. Integrations are optional extras.
+dependencies = []
+
+[project.optional-dependencies]
+agent = ["anthropic>=0.40"]
+hardware = ["pyserial>=3.5"]
+vision = ["opencv-python>=4.8", "numpy>=1.24"]
+dev = ["pytest>=7"]
+all = ["anthropic>=0.40", "pyserial>=3.5", "opencv-python>=4.8", "numpy>=1.24", "pytest>=7"]
+
+[project.scripts]
+tactin = "tactin.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["tactin*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
