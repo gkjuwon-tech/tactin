@@ -280,7 +280,7 @@ def setup_world():
     world.use_nodes = True
     nt = world.node_tree
     bg = nt.nodes["Background"]
-    bg.inputs["Strength"].default_value = 0.9
+    bg.inputs["Strength"].default_value = 0.45
     env = nt.nodes.new("ShaderNodeTexEnvironment")
     env.image = bpy.data.images.load(HDRI)
     mapping = nt.nodes.new("ShaderNodeMapping")
@@ -308,16 +308,16 @@ def add_light(name, kind, loc, energy, size, target):
 
 def setup_camera_lights():
     target = bpy.data.objects.new("Target", None)
-    target.location = (0.0, 0.0, 0.86)
+    target.location = (0.0, 0.0, 0.60)
     bpy.context.collection.objects.link(target)
 
     cam_data = bpy.data.cameras.new("Cam")
     cam_data.lens = 50
     cam_data.dof.use_dof = True
-    cam_data.dof.focus_distance = 2.0
-    cam_data.dof.aperture_fstop = 10.0
+    cam_data.dof.focus_distance = 2.4
+    cam_data.dof.aperture_fstop = 11.0
     cam = bpy.data.objects.new("Cam", cam_data)
-    cam.location = (1.35, -1.55, 1.05)
+    cam.location = (1.5, -1.8, 1.05)
     bpy.context.collection.objects.link(cam)
     c = cam.constraints.new("TRACK_TO")
     c.target = target
@@ -325,10 +325,10 @@ def setup_camera_lights():
     c.up_axis = "UP_Y"
     bpy.context.scene.camera = cam
 
-    # key (warm, front-left), rim (strong, back-right edge), soft top fill
-    add_light("Key", "AREA", (-0.8, -1.0, 1.6), 160, 1.4, target)
-    add_light("Rim", "AREA", (1.1, 1.0, 1.3), 160, 0.5, target)
-    add_light("Fill", "AREA", (0.3, -0.6, 2.0), 60, 2.2, target)
+    # key (front-left, casts the grounding shadow), rim (back-right edge), soft fill
+    add_light("Key", "AREA", (-0.9, -1.0, 1.8), 260, 1.5, target)
+    add_light("Rim", "AREA", (1.2, 1.1, 1.5), 200, 0.6, target)
+    add_light("Fill", "AREA", (0.4, -0.7, 2.1), 35, 2.5, target)
 
 
 def setup_render():
